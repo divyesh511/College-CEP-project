@@ -67,16 +67,16 @@ const SafetyTipsPage = () => {
             <div key={idx} className="col-lg-6">
               <div className="cyber-card p-4 p-md-5 h-100 shadow-sm">
                 <div className="d-flex align-items-center gap-3 mb-4">
-                  <div className="p-3 bg-light rounded-3 border">
+                  <div className="p-3 rounded-4 cyber-card border border-secondary border-opacity-25 shadow-sm">
                     {cat.icon}
                   </div>
-                  <h4 className="fw-bold text-dark mb-0">{cat.title}</h4>
+                  <h4 className="fw-bold text-heading mb-0">{cat.title}</h4>
                 </div>
 
                 <ul className="list-unstyled d-flex flex-column gap-3 mb-0">
                   {cat.tips.map((tip, tIdx) => (
                     <li key={tIdx} className="d-flex align-items-start gap-2.5">
-                      <div className="bg-success bg-opacity-10 text-success p-1 rounded-circle mt-0.5 flex-shrink-0">
+                      <div className="bg-success bg-opacity-10 text-success p-1 rounded-circle mt-0.5 flex-shrink-0 border border-success border-opacity-25">
                         <Check size={14} />
                       </div>
                       <span className="text-secondary small leading-relaxed">{tip}</span>
@@ -89,7 +89,7 @@ const SafetyTipsPage = () => {
         </div>
 
         {/* Golden Rule Summary Card */}
-        <div className="cyber-card p-4 p-md-5 bg-dark text-white border-secondary">
+        <div className="cyber-card-dark p-4 p-md-5 shadow-lg">
           <div className="row align-items-center g-4">
             <div className="col-lg-8">
               <h4 className="fw-bold text-info mb-2">The Golden Rule of Cyber Safety</h4>
@@ -98,7 +98,7 @@ const SafetyTipsPage = () => {
               </p>
             </div>
             <div className="col-lg-4 text-lg-end">
-              <Link to="/quizzes" className="btn btn-info btn-lg rounded-pill px-4 fw-bold text-dark">
+              <Link to="/quizzes" className="btn btn-info btn-lg rounded-pill px-4 fw-bold text-dark shadow">
                 Take Safety Quiz
               </Link>
             </div>

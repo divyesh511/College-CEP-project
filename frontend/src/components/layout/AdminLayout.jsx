@@ -21,14 +21,16 @@ const AdminLayout = () => {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <div className="d-flex flex-column min-vh-100 bg-page">
+    <div className="d-flex flex-column min-vh-100 bg-page position-relative">
+      <div className="ambient-glow-orb-1" aria-hidden="true"></div>
+      <div className="ambient-glow-orb-2" aria-hidden="true"></div>
       <Navbar />
-      <div className="container-fluid py-4 flex-grow-1 px-lg-5">
+      <div className="container-fluid py-4 flex-grow-1 px-lg-5 position-relative" style={{ zIndex: 1 }}>
         <div className="row g-4">
           {/* Admin Sidebar */}
           <div className="col-lg-3 col-xl-2">
             <div className="cyber-card p-3 shadow-sm sticky-top" style={{ top: '80px' }}>
-              <div className="d-flex align-items-center gap-2 p-2.5 bg-danger bg-opacity-10 text-danger rounded-3 mb-3 border border-danger border-opacity-25">
+              <div className="d-flex align-items-center gap-2 p-2.5 bg-danger bg-opacity-10 text-danger rounded-4 mb-3 border border-danger border-opacity-30 shadow-sm">
                 <ShieldAlert size={20} />
                 <span className="fw-bold small">ADMINISTRATION PANEL</span>
               </div>

@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Shield, User, LogOut, LayoutDashboard, HelpCircle, FileText, CheckCircle2 } from 'lucide-react';
+import { Shield, User, LogOut, LayoutDashboard, HelpCircle, FileText, CheckCircle2, Sun, Moon } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
 
 const Navbar = () => {
   const { user, isAuthenticated, isAdmin, logout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -16,11 +18,11 @@ const Navbar = () => {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark py-3 border-bottom border-secondary shadow-sm sticky-top" style={{ backgroundColor: '#0b1120' }}>
+    <nav className="navbar navbar-expand-lg py-3 sticky-top">
       <div className="container">
         {/* Brand */}
-        <Link className="navbar-brand d-flex align-items-center gap-2 fw-bold text-white fs-4" to="/">
-          <div className="bg-info bg-opacity-10 p-2 rounded-circle border border-info border-opacity-25 d-flex align-items-center justify-content-center">
+        <Link className="navbar-brand d-flex align-items-center gap-2 fw-bold fs-4 text-decoration-none" to="/">
+          <div className="bg-info bg-opacity-15 p-2 rounded-circle border border-info border-opacity-30 d-flex align-items-center justify-content-center shadow-sm">
             <Shield className="text-info" size={24} />
           </div>
           <span>CyberSafe<span className="text-info">Community</span></span>
@@ -28,7 +30,7 @@ const Navbar = () => {
 
         {/* Mobile Toggle */}
         <button
-          className="navbar-toggler"
+          className="navbar-toggler border-0"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#cybersafeNavbar"
@@ -41,35 +43,51 @@ const Navbar = () => {
 
         {/* Links & Auth Actions */}
         <div className="collapse navbar-collapse" id="cybersafeNavbar">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3 gap-1">
             <li className="nav-item">
-              <Link className={`nav-link ${isActive('/') ? 'active text-info fw-bold' : 'text-light'}`} to="/">
+              <Link className={`nav-link ${isActive('/') ? 'active' : ''}`} to="/">
                 Home
               </Link>
             </li>
             <li className="nav-item">
-              <Link className={`nav-link ${isActive('/resources') ? 'active text-info fw-bold' : 'text-light'}`} to="/resources">
+              <Link className={`nav-link ${isActive('/resources') ? 'active' : ''}`} to="/resources">
                 Articles & Guides
               </Link>
             </li>
             <li className="nav-item">
-              <Link className={`nav-link ${isActive('/scams') ? 'active text-info fw-bold' : 'text-light'}`} to="/scams">
+              <Link className={`nav-link ${isActive('/scams') ? 'active' : ''}`} to="/scams">
                 Scam Alerts
               </Link>
             </li>
             <li className="nav-item">
-              <Link className={`nav-link ${isActive('/tips') ? 'active text-info fw-bold' : 'text-light'}`} to="/tips">
+              <Link className={`nav-link ${isActive('/tips') ? 'active' : ''}`} to="/tips">
                 Safety Tips
               </Link>
             </li>
             <li className="nav-item">
-              <Link className={`nav-link ${isActive('/about-cep') ? 'active text-info fw-bold' : 'text-light'}`} to="/about-cep">
+              <Link className={`nav-link ${isActive('/about-cep') ? 'active' : ''}`} to="/about-cep">
                 About CEP
               </Link>
             </li>
           </ul>
 
           <div className="d-flex align-items-center gap-2">
+            {/* Theme Toggle Button */}
+            <button
+              type="button"
+              className="btn btn-outline-light btn-sm d-flex align-items-center justify-content-center rounded-circle p-2"
+              style={{ width: '38px', height: '38px' }}
+              onClick={toggleTheme}
+              title={`Switch to ${theme === 'dark' ? 'Light Glass' : 'Dark Glass'} Mode`}
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? (
+                <Sun size={18} className="text-warning" />
+              ) : (
+                <Moon size={18} className="text-info" />
+              )}
+            </button>
+
             {isAuthenticated() ? (
               <div className="dropdown">
                 <button
@@ -83,7 +101,7 @@ const Navbar = () => {
                   <span className="small fw-semibold">{user?.fullName || 'My Account'}</span>
                   {isAdmin() && <span className="badge bg-danger rounded-pill ms-1" style={{ fontSize: '0.65rem' }}>ADMIN</span>}
                 </button>
-                <ul className="dropdown-menu dropdown-menu-end shadow-lg border border-secondary mt-2" aria-labelledby="userDropdown">
+                <ul className="dropdown-menu dropdown-menu-end shadow-lg mt-2" aria-labelledby="userDropdown">
                   <li>
                     <h6 className="dropdown-header text-truncate" style={{ maxWidth: '220px' }}>
                       {user?.email}
@@ -92,25 +110,25 @@ const Navbar = () => {
                   <li><hr className="dropdown-divider" /></li>
                   <li>
                     <Link className="dropdown-item d-flex align-items-center gap-2" to="/dashboard">
-                      <LayoutDashboard size={16} />
+                      <LayoutDashboard size={16} className="text-info" />
                       <span>{isAdmin() ? 'Admin Dashboard' : 'User Dashboard'}</span>
                     </Link>
                   </li>
                   <li>
                     <Link className="dropdown-item d-flex align-items-center gap-2" to="/quizzes">
-                      <CheckCircle2 size={16} />
+                      <CheckCircle2 size={16} className="text-success" />
                       <span>Take Quizzes</span>
                     </Link>
                   </li>
                   <li>
                     <Link className="dropdown-item d-flex align-items-center gap-2" to="/helpdesk/my">
-                      <HelpCircle size={16} />
+                      <HelpCircle size={16} className="text-warning" />
                       <span>My Helpdesk Queries</span>
                     </Link>
                   </li>
                   <li>
                     <Link className="dropdown-item d-flex align-items-center gap-2" to="/profile">
-                      <User size={16} />
+                      <User size={16} className="text-primary" />
                       <span>Profile & Password</span>
                     </Link>
                   </li>
@@ -125,10 +143,10 @@ const Navbar = () => {
               </div>
             ) : (
               <div className="d-flex gap-2">
-                <Link to="/login" className="btn btn-outline-light btn-sm px-3 py-1">
+                <Link to="/login" className="btn btn-outline-light btn-sm px-3 py-1.5 rounded-pill">
                   Login
                 </Link>
-                <Link to="/register" className="btn btn-info btn-sm px-3 py-1 fw-bold text-dark">
+                <Link to="/register" className="btn btn-info btn-sm px-3 py-1.5 fw-bold rounded-pill text-dark">
                   Register
                 </Link>
               </div>
@@ -141,3 +159,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

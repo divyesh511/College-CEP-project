@@ -88,7 +88,7 @@ const RegisterPage = () => {
                 <div className="mb-3">
                   <label className="form-label small fw-semibold text-secondary">Full Name</label>
                   <div className="input-group">
-                    <span className="input-group-text bg-white text-muted">
+                    <span className="input-group-text text-muted">
                       <User size={18} />
                     </span>
                     <input
@@ -106,7 +106,7 @@ const RegisterPage = () => {
                 <div className="mb-3">
                   <label className="form-label small fw-semibold text-secondary">Email Address</label>
                   <div className="input-group">
-                    <span className="input-group-text bg-white text-muted">
+                    <span className="input-group-text text-muted">
                       <Mail size={18} />
                     </span>
                     <input
@@ -124,7 +124,7 @@ const RegisterPage = () => {
                 <div className="mb-3">
                   <label className="form-label small fw-semibold text-secondary">Mobile Number (Optional)</label>
                   <div className="input-group">
-                    <span className="input-group-text bg-white text-muted">
+                    <span className="input-group-text text-muted">
                       <Phone size={18} />
                     </span>
                     <input
@@ -142,7 +142,7 @@ const RegisterPage = () => {
                   <div className="col-md-6">
                     <label className="form-label small fw-semibold text-secondary">Password</label>
                     <div className="input-group">
-                      <span className="input-group-text bg-white text-muted">
+                      <span className="input-group-text text-muted">
                         <Lock size={18} />
                       </span>
                       <input
@@ -160,7 +160,7 @@ const RegisterPage = () => {
                   <div className="col-md-6">
                     <label className="form-label small fw-semibold text-secondary">Confirm Password</label>
                     <div className="input-group">
-                      <span className="input-group-text bg-white text-muted">
+                      <span className="input-group-text text-muted">
                         <Lock size={18} />
                       </span>
                       <input
@@ -185,7 +185,7 @@ const RegisterPage = () => {
 
                 <button
                   type="submit"
-                  className="btn btn-cyber-primary w-100 py-2.5 fw-semibold d-flex align-items-center justify-content-center gap-2 mb-3"
+                  className="btn btn-cyber-primary w-100 py-2.5 fw-semibold d-flex align-items-center justify-content-center gap-2 mb-3 rounded-pill shadow"
                   disabled={loading}
                 >
                   {loading ? (

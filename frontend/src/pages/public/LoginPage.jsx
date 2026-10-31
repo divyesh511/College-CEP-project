@@ -79,7 +79,7 @@ const LoginPage = () => {
                 <div className="mb-3">
                   <label className="form-label small fw-semibold text-secondary">Email Address</label>
                   <div className="input-group">
-                    <span className="input-group-text bg-white text-muted">
+                    <span className="input-group-text text-muted">
                       <Mail size={18} />
                     </span>
                     <input
@@ -98,7 +98,7 @@ const LoginPage = () => {
                     <label className="form-label small fw-semibold text-secondary mb-0">Password</label>
                   </div>
                   <div className="input-group">
-                    <span className="input-group-text bg-white text-muted">
+                    <span className="input-group-text text-muted">
                       <Lock size={18} />
                     </span>
                     <input
@@ -114,7 +114,7 @@ const LoginPage = () => {
 
                 <button
                   type="submit"
-                  className="btn btn-cyber-primary w-100 py-2.5 fw-semibold d-flex align-items-center justify-content-center gap-2 mb-3"
+                  className="btn btn-cyber-primary w-100 py-2.5 fw-semibold d-flex align-items-center justify-content-center gap-2 mb-3 rounded-pill shadow"
                   disabled={loading}
                 >
                   {loading ? (
@@ -129,19 +129,19 @@ const LoginPage = () => {
               </form>
 
               {/* Demo Credentials Helper for Examiners */}
-              <div className="p-3 bg-light rounded-3 border mt-3 small">
-                <div className="fw-bold text-dark mb-1">Quick Demo Accounts for Evaluation:</div>
+              <div className="p-3 rounded-4 cyber-card mt-3 small">
+                <div className="fw-bold text-heading mb-1">Quick Demo Accounts for Evaluation:</div>
                 <div className="d-flex flex-wrap gap-2 mt-2">
                   <button
                     type="button"
-                    className="btn btn-outline-info btn-sm py-1 px-2.5"
+                    className="btn btn-outline-info btn-sm py-1 px-2.5 rounded-pill"
                     onClick={() => setDemoCredentials('admin@cybersafe.org', 'Admin@123')}
                   >
                     Admin: admin@cybersafe.org
                   </button>
                   <button
                     type="button"
-                    className="btn btn-outline-secondary btn-sm py-1 px-2.5"
+                    className="btn btn-outline-light btn-sm py-1 px-2.5 rounded-pill"
                     onClick={() => setDemoCredentials('aarav@community.org', 'User@123')}
                   >
                     User: aarav@community.org

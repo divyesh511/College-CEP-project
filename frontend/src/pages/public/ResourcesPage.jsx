@@ -86,7 +86,7 @@ const ResourcesPage = () => {
           <form onSubmit={handleSearchSubmit} className="row g-3 align-items-center">
             <div className="col-lg-6">
               <div className="input-group">
-                <span className="input-group-text bg-white border-end-0 text-muted">
+                <span className="input-group-text border-end-0 text-muted">
                   <Search size={18} />
                 </span>
                 <input
@@ -104,7 +104,7 @@ const ResourcesPage = () => {
 
             <div className="col-lg-4 col-md-8">
               <div className="input-group">
-                <span className="input-group-text bg-white border-end-0 text-muted">
+                <span className="input-group-text border-end-0 text-muted">
                   <Filter size={18} />
                 </span>
                 <select
@@ -125,11 +125,11 @@ const ResourcesPage = () => {
             <div className="col-lg-2 col-md-4 text-end">
               <button
                 type="button"
-                className="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center gap-1.5"
+                className="btn btn-outline-light w-100 d-flex align-items-center justify-content-center gap-1.5 rounded-pill"
                 onClick={handleReset}
               >
                 <RefreshCw size={16} />
-                <span>Reset Filters</span>
+                <span>Reset</span>
               </button>
             </div>
           </form>
@@ -139,7 +139,7 @@ const ResourcesPage = () => {
             <span className="small text-muted align-self-center me-1">Topics:</span>
             <button
               className={`badge border px-3 py-1.5 rounded-pill text-decoration-none ${
-                selectedCategory === '' ? 'bg-dark text-white' : 'bg-light text-secondary'
+                selectedCategory === '' ? 'btn-cyber-primary text-white border-0' : 'bg-secondary bg-opacity-20 text-secondary border-secondary border-opacity-30'
               }`}
               onClick={() => handleCategorySelect('')}
             >
@@ -149,7 +149,7 @@ const ResourcesPage = () => {
               <button
                 key={c.id}
                 className={`badge border px-3 py-1.5 rounded-pill text-decoration-none ${
-                  selectedCategory === String(c.id) ? 'bg-info text-dark fw-bold border-info' : 'bg-light text-secondary'
+                  selectedCategory === String(c.id) ? 'btn-cyber-primary text-white border-0' : 'bg-secondary bg-opacity-20 text-secondary border-secondary border-opacity-30'
                 }`}
                 onClick={() => handleCategorySelect(String(c.id))}
               >
@@ -180,14 +180,14 @@ const ResourcesPage = () => {
                 <div key={article.id} className="col-lg-4 col-md-6">
                   <div className="cyber-card p-4 h-100 d-flex flex-column">
                     <div className="d-flex align-items-center justify-content-between mb-3">
-                      <span className="badge bg-light text-secondary border px-2.5 py-1 rounded-pill small">
+                      <span className="badge bg-secondary bg-opacity-20 text-secondary border border-secondary border-opacity-25 px-2.5 py-1 rounded-pill small">
                         {article.categoryName}
                       </span>
                       <ThreatBadge level={article.threatLevel} />
                     </div>
 
-                    <h5 className="fw-bold mb-2 text-dark line-clamp-2">
-                      <Link to={`/articles/${article.slug}`} className="text-dark text-decoration-none hover-info">
+                    <h5 className="fw-bold mb-2 text-heading line-clamp-2">
+                      <Link to={`/articles/${article.slug}`} className="text-heading text-decoration-none hover-info">
                         {article.title}
                       </Link>
                     </h5>

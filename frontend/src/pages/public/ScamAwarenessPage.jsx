@@ -62,7 +62,7 @@ const ScamAwarenessPage = () => {
         </div>
 
         {/* Emergency Alert Box */}
-        <div className="cyber-card p-4 mb-5 border-2 border-danger border-opacity-50 shadow-sm bg-white">
+        <div className="cyber-card p-4 mb-5 border-2 border-danger border-opacity-50 shadow-sm">
           <div className="row align-items-center g-3">
             <div className="col-lg-8">
               <h5 className="fw-bold text-danger mb-1 d-flex align-items-center gap-2">
@@ -86,9 +86,9 @@ const ScamAwarenessPage = () => {
         <div className="row g-4 mb-5">
           {scams.map((scam) => (
             <div key={scam.id} className="col-12">
-              <div className="cyber-card p-4 p-md-5 shadow-sm border">
+              <div className="cyber-card p-4 p-md-5 shadow-sm">
                 <div className="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
-                  <h4 className="fw-bold text-dark mb-0">{scam.title}</h4>
+                  <h4 className="fw-bold text-heading mb-0">{scam.title}</h4>
                   <span className={`badge bg-${scam.badgeColor} bg-opacity-10 text-${scam.badgeColor} border border-${scam.badgeColor} px-3 py-1.5 rounded-pill fw-bold small`}>
                     {scam.badge}
                   </span>
@@ -99,7 +99,7 @@ const ScamAwarenessPage = () => {
                 <div className="row g-4">
                   {/* The Bait Script */}
                   <div className="col-md-4">
-                    <div className="p-3 bg-light rounded-3 h-100 border border-secondary border-opacity-25">
+                    <div className="p-3 rounded-4 h-100 cyber-card">
                       <h6 className="fw-bold text-danger d-flex align-items-center gap-1.5 mb-2">
                         <XCircle size={16} />
                         <span>The Fraudster's Script</span>
@@ -110,8 +110,8 @@ const ScamAwarenessPage = () => {
 
                   {/* The Reality */}
                   <div className="col-md-4">
-                    <div className="p-3 bg-light rounded-3 h-100 border border-secondary border-opacity-25">
-                      <h6 className="fw-bold text-dark d-flex align-items-center gap-1.5 mb-2">
+                    <div className="p-3 rounded-4 h-100 cyber-card">
+                      <h6 className="fw-bold text-heading d-flex align-items-center gap-1.5 mb-2">
                         <AlertTriangle size={16} className="text-warning" />
                         <span>The Underlying Reality</span>
                       </h6>
@@ -121,12 +121,12 @@ const ScamAwarenessPage = () => {
 
                   {/* Defense Action */}
                   <div className="col-md-4">
-                    <div className="p-3 bg-success bg-opacity-10 rounded-3 h-100 border border-success border-opacity-25">
+                    <div className="p-3 bg-success bg-opacity-10 rounded-4 h-100 border border-success border-opacity-30">
                       <h6 className="fw-bold text-success d-flex align-items-center gap-1.5 mb-2">
                         <CheckCircle size={16} />
                         <span>Safe Action To Take</span>
                       </h6>
-                      <p className="small text-dark mb-0">{scam.action}</p>
+                      <p className="small text-heading mb-0">{scam.action}</p>
                     </div>
                   </div>
                 </div>

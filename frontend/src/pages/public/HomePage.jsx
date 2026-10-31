@@ -115,12 +115,12 @@ const HomePage = () => {
       </section>
 
       {/* 6 CEP Core Pillars Section */}
-      <section className="py-5 bg-white">
+      <section className="py-5">
         <div className="container py-4">
           <div className="text-center max-w-700 mx-auto mb-5">
             <span className="text-info fw-bold small text-uppercase tracking-wide">Community Engagement Modules</span>
-            <h2 className="fw-bold mt-1">Our Core Cyber Awareness Programs</h2>
-            <p className="text-muted">
+            <h2 className="fw-bold mt-1 text-heading">Our Core Cyber Awareness Programs</h2>
+            <p className="text-secondary">
               Built systematically according to the syllabus requirements of the B.Sc. IT Semester 5 Community Engagement Project.
             </p>
           </div>
@@ -226,14 +226,14 @@ const HomePage = () => {
       </section>
 
       {/* Featured Educational Articles */}
-      <section className="py-5 bg-page border-top border-bottom">
+      <section className="py-5">
         <div className="container py-4">
           <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
             <div>
               <span className="text-info fw-bold small text-uppercase">Educational Resources</span>
-              <h2 className="fw-bold mt-1">Featured Safety Guides & Scam Alerts</h2>
+              <h2 className="fw-bold mt-1 text-heading">Featured Safety Guides & Scam Alerts</h2>
             </div>
-            <Link to="/resources" className="btn btn-outline-dark btn-sm rounded-pill px-3 mt-3 mt-md-0 d-inline-flex align-items-center gap-1">
+            <Link to="/resources" className="btn btn-outline-light btn-sm rounded-pill px-3 mt-3 mt-md-0 d-inline-flex align-items-center gap-1">
               <span>View All Articles</span>
               <ArrowRight size={14} />
             </Link>
@@ -244,13 +244,13 @@ const HomePage = () => {
               <div key={article.id} className="col-lg-4 col-md-6">
                 <div className="cyber-card p-4 h-100 d-flex flex-column">
                   <div className="d-flex align-items-center justify-content-between mb-3">
-                    <span className="badge bg-light text-secondary border px-2.5 py-1 rounded-pill small">
+                    <span className="badge bg-secondary bg-opacity-20 text-secondary border border-secondary border-opacity-25 px-2.5 py-1 rounded-pill small">
                       {article.categoryName}
                     </span>
                     <ThreatBadge level={article.threatLevel} />
                   </div>
-                  <h5 className="fw-bold mb-2 text-dark line-clamp-2">
-                    <Link to={`/articles/${article.slug}`} className="text-dark text-decoration-none hover-info">
+                  <h5 className="fw-bold mb-2 text-heading line-clamp-2">
+                    <Link to={`/articles/${article.slug}`} className="text-heading text-decoration-none hover-info">
                       {article.title}
                     </Link>
                   </h5>
@@ -272,19 +272,21 @@ const HomePage = () => {
       </section>
 
       {/* Community Engagement Workshop Banner */}
-      <section className="py-5 bg-dark text-white">
-        <div className="container py-3">
-          <div className="row align-items-center g-4">
-            <div className="col-lg-8">
-              <h3 className="fw-bold mb-2 text-white">Conducting an Awareness Workshop in Your Community?</h3>
-              <p className="text-light opacity-75 mb-0">
-                Use our interactive quizzes to conduct baseline surveys before your demonstration, and follow-up surveys after your session to measure genuine awareness improvements.
-              </p>
-            </div>
-            <div className="col-lg-4 text-lg-end">
-              <Link to="/about-cep" className="btn btn-info btn-lg fw-bold text-dark px-4 shadow">
-                Explore Fieldwork Plan
-              </Link>
+      <section className="py-5">
+        <div className="container py-2">
+          <div className="cyber-card-dark p-4 p-md-5">
+            <div className="row align-items-center g-4">
+              <div className="col-lg-8">
+                <h3 className="fw-bold mb-2 text-white">Conducting an Awareness Workshop in Your Community?</h3>
+                <p className="text-light opacity-80 mb-0">
+                  Use our interactive quizzes to conduct baseline surveys before your demonstration, and follow-up surveys after your session to measure genuine awareness improvements.
+                </p>
+              </div>
+              <div className="col-lg-4 text-lg-end">
+                <Link to="/about-cep" className="btn btn-info btn-lg fw-bold rounded-pill text-dark px-4 shadow">
+                  Explore Fieldwork Plan
+                </Link>
+              </div>
             </div>
           </div>
         </div>

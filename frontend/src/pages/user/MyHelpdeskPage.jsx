@@ -110,12 +110,12 @@ const MyHelpdeskPage = () => {
 
               {/* Admin Advice Block */}
               {q.adminResponse ? (
-                <div className="p-3.5 rounded-3 bg-light border border-success border-opacity-30 mt-3">
+                <div className="p-3.5 rounded-4 cyber-card border border-success border-opacity-40 mt-3 shadow-sm">
                   <div className="d-flex align-items-center gap-2 text-success fw-bold small mb-1">
                     <CheckCircle2 size={16} />
                     <span>Expert Advice from Moderator ({q.responderName || 'CyberSafe Team'}):</span>
                   </div>
-                  <p className="text-dark small leading-relaxed mb-1">
+                  <p className="text-heading small leading-relaxed mb-1">
                     {q.adminResponse}
                   </p>
                   {q.resolvedAt && (
@@ -125,7 +125,7 @@ const MyHelpdeskPage = () => {
                   )}
                 </div>
               ) : (
-                <div className="p-3 rounded-3 bg-light border small text-muted fst-italic">
+                <div className="p-3 rounded-4 cyber-card small text-muted fst-italic">
                   A community moderator is reviewing your inquiry. Please check back shortly for recommendations.
                 </div>
               )}

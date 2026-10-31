@@ -161,10 +161,10 @@ const QuizPlayPage = () => {
                     : `You scored ${result.scorePercentage}%, which is below the passing mark of ${result.passingScore}%. Read the explanations below to sharpen your instincts.`}
                 </p>
 
-                <div className="row g-3 max-w-600 mx-auto py-3 bg-light rounded-3 border mb-4">
+                <div className="row g-3 max-w-600 mx-auto py-3 rounded-4 cyber-card mb-4 shadow-sm">
                   <div className="col-4 border-end">
                     <div className="small text-muted">Your Score</div>
-                    <div className="fs-3 fw-bold text-dark">{result.scorePercentage}%</div>
+                    <div className="fs-3 fw-bold text-heading">{result.scorePercentage}%</div>
                   </div>
                   <div className="col-4 border-end">
                     <div className="small text-muted">Correct</div>
@@ -306,10 +306,10 @@ const QuizPlayPage = () => {
                     return (
                       <div
                         key={option.id}
-                        className={`p-3.5 rounded-3 border d-flex align-items-center gap-3 cursor-pointer transition ${
+                        className={`p-3.5 rounded-4 border d-flex align-items-center gap-3 transition ${
                           isSelected
-                            ? 'border-info bg-info bg-opacity-10 text-dark shadow-sm'
-                            : 'border-light bg-light hover-border-info'
+                            ? 'border-info bg-info bg-opacity-20 text-heading shadow-sm'
+                            : 'border-secondary border-opacity-25 bg-secondary bg-opacity-10 text-primary hover-border-info'
                         }`}
                         onClick={() => handleOptionSelect(currentQ.id, option.id)}
                         style={{ cursor: 'pointer' }}

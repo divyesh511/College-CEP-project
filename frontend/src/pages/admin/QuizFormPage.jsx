@@ -389,7 +389,7 @@ const QuizFormPage = () => {
                   <div className="d-flex flex-column gap-2">
                     {question.options.map((opt, oIdx) => (
                       <div key={oIdx} className="input-group">
-                        <span className="input-group-text bg-white">
+                        <span className="input-group-text">
                           <input
                             type="radio"
                             name={`correct_q_${qIdx}`}

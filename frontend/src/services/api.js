@@ -1,8 +1,11 @@
 import axios from 'axios';
 
+// Central API base URL: reads VITE_API_BASE_URL in production, falls back to empty string for local Vite proxy
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');
+
 // Create central Axios instance pointing to backend REST API
 const api = axios.create({
-  baseURL: '/api/v1',
+  baseURL: `${API_BASE_URL}/api/v1`,
   headers: {
     'Content-Type': 'application/json',
   },

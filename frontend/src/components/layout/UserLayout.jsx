@@ -12,19 +12,21 @@ const UserLayout = () => {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <div className="d-flex flex-column min-vh-100 bg-page">
+    <div className="d-flex flex-column min-vh-100 bg-page position-relative">
+      <div className="ambient-glow-orb-1" aria-hidden="true"></div>
+      <div className="ambient-glow-orb-2" aria-hidden="true"></div>
       <Navbar />
-      <div className="container py-4 flex-grow-1">
+      <div className="container py-4 flex-grow-1 position-relative" style={{ zIndex: 1 }}>
         <div className="row g-4">
           {/* User Sidebar */}
           <div className="col-lg-3">
             <div className="cyber-card p-3 shadow-sm sticky-top" style={{ top: '80px' }}>
-              <div className="d-flex align-items-center gap-3 p-3 bg-light rounded-3 mb-3 border">
-                <div className="bg-info bg-opacity-20 text-info p-2.5 rounded-circle fw-bold fs-5">
+              <div className="d-flex align-items-center gap-3 p-3 rounded-4 mb-3 border border-secondary border-opacity-25 bg-secondary bg-opacity-10 shadow-sm">
+                <div className="bg-info bg-opacity-20 text-info p-2.5 rounded-circle fw-bold fs-5 border border-info border-opacity-30">
                   {user?.fullName?.charAt(0) || 'U'}
                 </div>
                 <div className="overflow-hidden">
-                  <div className="fw-bold text-dark text-truncate">{user?.fullName}</div>
+                  <div className="fw-bold text-heading text-truncate">{user?.fullName}</div>
                   <div className="small text-muted text-truncate">{user?.email}</div>
                 </div>
               </div>

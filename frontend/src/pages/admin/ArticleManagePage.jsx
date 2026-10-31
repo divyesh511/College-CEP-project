@@ -92,7 +92,7 @@ const ArticleManagePage = () => {
         <form onSubmit={handleSearchSubmit} className="row g-2">
           <div className="col-md-10">
             <div className="input-group">
-              <span className="input-group-text bg-white border-end-0 text-muted">
+              <span className="input-group-text border-end-0 text-muted">
                 <Search size={18} />
               </span>
               <input

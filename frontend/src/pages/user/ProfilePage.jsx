@@ -118,12 +118,12 @@ const ProfilePage = () => {
               <div className="mb-3">
                 <label className="form-label small fw-semibold text-secondary">Email Address (Registered ID)</label>
                 <div className="input-group">
-                  <span className="input-group-text bg-light text-muted">
+                  <span className="input-group-text text-muted">
                     <Mail size={18} />
                   </span>
                   <input
                     type="email"
-                    className="form-control bg-light"
+                    className="form-control"
                     value={user?.email || ''}
                     disabled
                   />
@@ -134,7 +134,7 @@ const ProfilePage = () => {
               <div className="mb-3">
                 <label className="form-label small fw-semibold text-secondary">Full Name</label>
                 <div className="input-group">
-                  <span className="input-group-text bg-white text-muted">
+                  <span className="input-group-text text-muted">
                     <User size={18} />
                   </span>
                   <input
@@ -150,7 +150,7 @@ const ProfilePage = () => {
               <div className="mb-4">
                 <label className="form-label small fw-semibold text-secondary">Mobile Number</label>
                 <div className="input-group">
-                  <span className="input-group-text bg-white text-muted">
+                  <span className="input-group-text text-muted">
                     <Phone size={18} />
                   </span>
                   <input

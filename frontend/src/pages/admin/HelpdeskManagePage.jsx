@@ -208,15 +208,15 @@ const HelpdeskManagePage = () => {
 
       {/* Response Modal */}
       {activeModal.show && activeModal.query && (
-        <div className="modal show d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+        <div className="modal show d-block" tabIndex="-1">
           <div className="modal-dialog modal-dialog-centered modal-lg">
-            <div className="modal-content shadow-lg border-0 rounded-3">
+            <div className="modal-content shadow-lg rounded-4">
               <div className="modal-header border-bottom">
-                <h5 className="modal-title fw-bold text-dark d-flex align-items-center gap-2">
+                <h5 className="modal-title fw-bold text-heading d-flex align-items-center gap-2">
                   <MessageSquare size={20} className="text-danger" />
                   <span>Helpdesk Ticket Review #{activeModal.query.id}</span>
                 </h5>
-                <button type="button" className="btn-close" onClick={handleCloseModal}></button>
+                <button type="button" className="btn-close" onClick={handleCloseModal} aria-label="Close"></button>
               </div>
 
               <form onSubmit={handleSaveResponse}>
@@ -228,16 +228,16 @@ const HelpdeskManagePage = () => {
                   )}
 
                   {/* Incident Context */}
-                  <div className="p-3 bg-light rounded-3 border mb-3">
+                  <div className="p-3 rounded-4 cyber-card mb-3">
                     <div className="d-flex justify-content-between align-items-center mb-1">
                       <span className="badge bg-info bg-opacity-10 text-info border border-info small">
                         {activeModal.query.category}
                       </span>
                       <small className="text-muted">
-                        From: <strong>{activeModal.query.userName}</strong> ({activeModal.query.userEmail})
+                        From: <strong className="text-heading">{activeModal.query.userName}</strong> ({activeModal.query.userEmail})
                       </small>
                     </div>
-                    <h6 className="fw-bold text-dark mt-2 mb-1">{activeModal.query.subject}</h6>
+                    <h6 className="fw-bold text-heading mt-2 mb-1">{activeModal.query.subject}</h6>
                     <p className="text-secondary small mb-0 leading-relaxed">
                       {activeModal.query.description}
                     </p>
@@ -275,12 +275,12 @@ const HelpdeskManagePage = () => {
                 </div>
 
                 <div className="modal-footer border-top">
-                  <button type="button" className="btn btn-light rounded-pill px-3" onClick={handleCloseModal}>
+                  <button type="button" className="btn btn-outline-light rounded-pill px-3.5" onClick={handleCloseModal}>
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="btn btn-danger rounded-pill px-4 fw-semibold d-inline-flex align-items-center gap-2"
+                    className="btn btn-danger rounded-pill px-4 fw-semibold d-inline-flex align-items-center gap-2 shadow-sm"
                     disabled={savingResponse}
                   >
                     {savingResponse ? (

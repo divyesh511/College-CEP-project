@@ -4,14 +4,16 @@ import { Shield, PhoneCall, AlertTriangle, BookOpen, ExternalLink } from 'lucide
 
 const Footer = () => {
   return (
-    <footer className="bg-dark text-light py-5 border-top border-secondary mt-auto" style={{ backgroundColor: '#090d16' }}>
+    <footer className="py-5 mt-auto">
       <div className="container">
         <div className="row g-4 mb-4">
           {/* Brand & Purpose */}
           <div className="col-lg-4 col-md-6">
             <div className="d-flex align-items-center gap-2 mb-3">
-              <Shield className="text-info" size={26} />
-              <h5 className="mb-0 text-white fw-bold">CyberSafe<span className="text-info">Community</span></h5>
+              <div className="bg-info bg-opacity-15 p-2 rounded-circle border border-info border-opacity-30 d-flex align-items-center justify-content-center shadow-sm">
+                <Shield className="text-info" size={24} />
+              </div>
+              <h5 className="mb-0 text-heading fw-bold">CyberSafe<span className="text-info">Community</span></h5>
             </div>
             <p className="text-secondary small mb-3">
               A comprehensive digital safety portal built for the <strong>Semester 5 Community Engagement Project (CEP)</strong> in B.Sc. IT. Empowering students, parents, and senior citizens against deceptive online financial and identity scams.
@@ -24,7 +26,7 @@ const Footer = () => {
 
           {/* Quick Learning Links */}
           <div className="col-lg-2 col-md-6">
-            <h6 className="text-white fw-bold mb-3">Awareness Hub</h6>
+            <h6 className="text-heading fw-bold mb-3">Awareness Hub</h6>
             <ul className="list-unstyled small d-flex flex-column gap-2">
               <li><Link to="/resources" className="text-secondary text-decoration-none hover-info">Articles & Guides</Link></li>
               <li><Link to="/scams" className="text-secondary text-decoration-none hover-info">UPI & QR Fraud</Link></li>
@@ -36,11 +38,11 @@ const Footer = () => {
 
           {/* Emergency & Official Helplines */}
           <div className="col-lg-3 col-md-6">
-            <h6 className="text-white fw-bold mb-3">Official Cyber Helplines (India)</h6>
+            <h6 className="text-heading fw-bold mb-3">Official Cyber Helplines (India)</h6>
             <ul className="list-unstyled small d-flex flex-column gap-2 text-secondary">
               <li className="d-flex align-items-center gap-2">
                 <PhoneCall size={16} className="text-danger" />
-                <span>National Helpline: <strong className="text-white">1930</strong> (Toll-Free)</span>
+                <span>National Helpline: <strong className="text-danger">1930</strong> (Toll-Free)</span>
               </li>
               <li className="d-flex align-items-center gap-2">
                 <ExternalLink size={16} className="text-info" />
@@ -59,14 +61,14 @@ const Footer = () => {
 
           {/* College Project Disclaimer */}
           <div className="col-lg-3 col-md-6">
-            <h6 className="text-white fw-bold mb-3">CEP Fieldwork</h6>
-            <div className="p-3 rounded bg-secondary bg-opacity-10 border border-secondary border-opacity-25 small text-secondary">
+            <h6 className="text-heading fw-bold mb-3">CEP Fieldwork</h6>
+            <div className="p-3 rounded-4 cyber-card small text-secondary">
               This application is designed for conducting pre- and post-awareness surveys and interactive digital safety workshops in local communities.
             </div>
           </div>
         </div>
 
-        <hr className="border-secondary my-4" />
+        <hr className="my-4" />
 
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-center small text-secondary">
           <div>
@@ -82,3 +84,4 @@ const Footer = () => {
 };
 
 export default Footer;
+
