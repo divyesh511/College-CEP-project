@@ -1,0 +1,177 @@
+/* ==========================================================================
+   CyberSafe Community - Custom Design System & Cyber Theme
+   Primary Palette: Deep Cyber Navy, Crisp Slate, Vibrant Cyber Teal
+   Threat Highlights: Danger Coral (#ef4444), Amber Warning (#f59e0b)
+   ========================================================================== */
+
+:root {
+  --primary-navy: #0f172a;
+  --secondary-navy: #1e293b;
+  --dark-navy: #0b0f19;
+  --card-bg: #ffffff;
+  --cyber-teal: #0ea5e9;
+  --cyber-cyan: #06b6d4;
+  --cyber-emerald: #10b981;
+  --threat-low: #10b981;
+  --threat-medium: #f59e0b;
+  --threat-high: #f97316;
+  --threat-critical: #ef4444;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --border-light: #e2e8f0;
+  --bg-page: #f8fafc;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6, .brand-font {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--primary-navy);
+}
+
+/* Custom Cyber Cards */
+.cyber-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.cyber-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.1), 0 4px 6px -4px rgba(14, 165, 233, 0.1);
+  border-color: #bae6fd;
+}
+
+.cyber-card-dark {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+/* Cyber Badges */
+.threat-badge-low {
+  background-color: #d1fae5;
+  color: #065f46;
+  font-weight: 600;
+}
+
+.threat-badge-medium {
+  background-color: #fef3c7;
+  color: #92400e;
+  font-weight: 600;
+}
+
+.threat-badge-high {
+  background-color: #ffedd5;
+  color: #9a3412;
+  font-weight: 600;
+}
+
+.threat-badge-critical {
+  background-color: #fee2e2;
+  color: #991b1b;
+  font-weight: 600;
+  animation: pulse-critical 2s infinite;
+}
+
+@keyframes pulse-critical {
+  0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+  70% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+/* Custom Buttons */
+.btn-cyber-primary {
+  background-color: #0284c7;
+  border-color: #0284c7;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.5rem 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.btn-cyber-primary:hover {
+  background-color: #0369a1;
+  border-color: #0369a1;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.25);
+}
+
+.btn-cyber-outline {
+  border: 1.5px solid #0284c7;
+  color: #0284c7;
+  font-weight: 600;
+  border-radius: 8px;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.btn-cyber-outline:hover {
+  background-color: #0284c7;
+  color: #ffffff;
+}
+
+/* Hero Section Gradients */
+.hero-gradient {
+  background: radial-gradient(circle at 10% 20%, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 90%);
+  color: #ffffff;
+}
+
+.badge-glow {
+  box-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
+}
+
+/* Admin & User Sidebar */
+.sidebar {
+  min-height: calc(100vh - 65px);
+  background-color: #0f172a;
+  color: #e2e8f0;
+}
+
+.sidebar .nav-link {
+  color: #94a3b8;
+  font-weight: 500;
+  border-radius: 8px;
+  margin-bottom: 4px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s;
+}
+
+.sidebar .nav-link:hover, .sidebar .nav-link.active {
+  background-color: #1e293b;
+  color: #38bdf8;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
