@@ -8,15 +8,15 @@ spring:
     name: cybersafe-community
   
   datasource:
-    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:cybersafe_community}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&createDatabaseIfNotExist=true
+    url: ${SPRING_DATASOURCE_URL:${DB_URL:jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:cybersafe_community}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}}
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
-      maximum-pool-size: 10
-      minimum-idle: 2
+      maximum-pool-size: 4
+      minimum-idle: 1
       idle-timeout: 30000
-      connection-timeout: 20000
+      connection-timeout: 30000
       max-lifetime: 1800000
 
   jpa:
