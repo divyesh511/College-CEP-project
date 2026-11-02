@@ -10,10 +10,10 @@ const Footer = () => {
           {/* Brand & Purpose */}
           <div className="col-lg-4 col-md-6">
             <div className="d-flex align-items-center gap-2 mb-3">
-              <div className="bg-info bg-opacity-15 p-2 rounded-circle border border-info border-opacity-30 d-flex align-items-center justify-content-center shadow-sm">
-                <Shield className="text-info" size={24} />
+              <div className="p-1 rounded-circle d-flex align-items-center justify-content-center shadow-sm">
+                <img src="/favicon.svg" alt="CyberSafe Logo" width="30" height="30" className="rounded-circle" />
               </div>
-              <h5 className="mb-0 text-heading fw-bold">CyberSafe<span className="text-info">Community</span></h5>
+              <h5 className="mb-0 fw-bold"><span className="text-white">CyberSafe</span><span className="text-info">Community</span></h5>
             </div>
             <p className="text-secondary small mb-3">
               A comprehensive digital safety portal built for the <strong>Semester 5 Community Engagement Project (CEP)</strong> in B.Sc. IT. Empowering students, parents, and senior citizens against deceptive online financial and identity scams.

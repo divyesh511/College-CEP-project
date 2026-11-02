@@ -130,15 +130,8 @@ const LoginPage = () => {
 
               {/* Demo Credentials Helper for Examiners */}
               <div className="p-3 rounded-4 cyber-card mt-3 small">
-                <div className="fw-bold text-heading mb-1">Quick Demo Accounts for Evaluation:</div>
+                <div className="fw-bold text-heading mb-1">Quick Demo Account for Evaluation:</div>
                 <div className="d-flex flex-wrap gap-2 mt-2">
-                  <button
-                    type="button"
-                    className="btn btn-outline-info btn-sm py-1 px-2.5 rounded-pill"
-                    onClick={() => setDemoCredentials('admin@cybersafe.org', 'Admin@123')}
-                  >
-                    Admin: admin@cybersafe.org
-                  </button>
                   <button
                     type="button"
                     className="btn btn-outline-light btn-sm py-1 px-2.5 rounded-pill"

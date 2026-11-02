@@ -136,9 +136,9 @@ const ScamAwarenessPage = () => {
         </div>
 
         {/* CTA to Quiz */}
-        <div className="cyber-card p-5 text-center bg-dark text-white border-secondary">
-          <h3 className="fw-bold mb-3 text-white">Think You Can Spot Every Scam?</h3>
-          <p className="text-light opacity-75 max-w-600 mx-auto mb-4">
+        <div className="cyber-card p-5 text-center shadow-lg">
+          <h3 className="fw-bold mb-3 text-heading">Think You Can Spot Every Scam?</h3>
+          <p className="text-secondary max-w-600 mx-auto mb-4">
             Test your real-world instincts in our interactive simulation. Our quizzes evaluate realistic scenarios without revealing answers until server submission.
           </p>
           <Link to="/quizzes" className="btn btn-info btn-lg fw-bold text-dark px-4 rounded-pill">

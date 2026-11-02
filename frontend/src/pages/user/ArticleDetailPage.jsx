@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, User, Tag, Shield, Share2, AlertTriangle, PhoneCall } from 'lucide-react';
 import { articleService } from '../../services/articleService';
+import { DUMMY_ARTICLES } from '../../data/dummyArticles';
 import ThreatBadge from '../../components/common/ThreatBadge';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 
@@ -24,11 +25,25 @@ const ArticleDetailPage = () => {
         if (res?.success && res.data) {
           setArticle(res.data);
         } else {
-          setError('Article not found or unavailable');
+          const fallback = DUMMY_ARTICLES.find(
+            (a) => a.slug === slug || String(a.id) === String(id)
+          );
+          if (fallback) {
+            setArticle(fallback);
+          } else {
+            setError('Article not found or unavailable');
+          }
         }
       } catch (err) {
-        console.error('Error fetching article:', err);
-        setError('Unable to load the requested article.');
+        console.warn('Error fetching article from API, checking fallback dummy articles:', err);
+        const fallback = DUMMY_ARTICLES.find(
+          (a) => a.slug === slug || String(a.id) === String(id)
+        );
+        if (fallback) {
+          setArticle(fallback);
+        } else {
+          setError('Unable to load the requested article.');
+        }
       } finally {
         setLoading(false);
       }
@@ -45,7 +60,7 @@ const ArticleDetailPage = () => {
       <div className="container py-5 text-center">
         <div className="cyber-card p-5 max-w-600 mx-auto">
           <AlertTriangle size={48} className="text-warning mb-3" />
-          <h4 className="fw-bold text-dark">Article Unavailable</h4>
+          <h4 className="fw-bold text-heading">Article Unavailable</h4>
           <p className="text-secondary small mb-4">{error || 'The requested article could not be located.'}</p>
           <Link to="/resources" className="btn btn-cyber-primary rounded-pill px-4">
             Browse All Articles

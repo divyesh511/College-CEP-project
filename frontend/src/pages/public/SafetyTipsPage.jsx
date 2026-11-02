@@ -93,7 +93,7 @@ const SafetyTipsPage = () => {
           <div className="row align-items-center g-4">
             <div className="col-lg-8">
               <h4 className="fw-bold text-info mb-2">The Golden Rule of Cyber Safety</h4>
-              <p className="text-light opacity-90 mb-0">
+              <p className="text-secondary mb-0">
                 <strong>Stop, Question, and Verify:</strong> Fraudsters rely on manufactured panic, artificial urgency, or unbelievable rewards. Whenever a digital message demands immediate action, take 5 minutes to verify through official physical channels or telephone numbers printed on official documents.
               </p>
             </div>

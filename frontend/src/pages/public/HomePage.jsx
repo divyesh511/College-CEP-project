@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, BookOpen, AlertTriangle, CheckCircle, HelpCircle, ArrowRight, PhoneCall, Award, Users, Lock } from 'lucide-react';
 import { articleService } from '../../services/articleService';
+import { DUMMY_ARTICLES } from '../../data/dummyArticles';
 import ThreatBadge from '../../components/common/ThreatBadge';
 
 const HomePage = () => {
@@ -12,11 +13,14 @@ const HomePage = () => {
     const fetchArticles = async () => {
       try {
         const res = await articleService.getPublishedArticles(null, '', 0, 3);
-        if (res.success && res.data?.content) {
+        if (res.success && res.data?.content && res.data.content.length > 0) {
           setFeaturedArticles(res.data.content);
+        } else {
+          setFeaturedArticles(DUMMY_ARTICLES.slice(0, 3));
         }
       } catch (err) {
-        console.error('Error fetching featured articles:', err);
+        console.warn('API error fetching featured articles, using dummy fallback:', err);
+        setFeaturedArticles(DUMMY_ARTICLES.slice(0, 3));
       } finally {
         setLoading(false);
       }
@@ -27,18 +31,18 @@ const HomePage = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="hero-gradient text-white py-5 position-relative overflow-hidden">
+      <section className="hero-gradient py-5 position-relative overflow-hidden">
         <div className="container py-5">
           <div className="row align-items-center g-5">
             <div className="col-lg-7">
-              <div className="d-inline-flex align-items-center gap-2 px-3 py-1.5 rounded-pill bg-dark bg-opacity-60 border border-info border-opacity-40 text-info mb-3">
+              <div className="cep-badge-pill d-inline-flex align-items-center gap-2 px-3 py-1.5 rounded-pill border mb-3">
                 <Shield size={16} />
                 <span className="small fw-semibold">Semester 5 Community Engagement Project (CEP) • B.Sc. IT</span>
               </div>
-              <h1 className="display-4 fw-extrabold mb-3 text-white">
+              <h1 className="display-4 fw-extrabold mb-3 text-heading">
                 Defend Your Community Against <span className="text-info">Digital Frauds & Cyber Scams</span>
               </h1>
-              <p className="lead text-light mb-4" style={{ fontSize: '1.2rem', lineHeight: '1.7' }}>
+              <p className="lead text-secondary mb-4" style={{ fontSize: '1.2rem', lineHeight: '1.7' }}>
                 A proactive community learning platform helping students, senior citizens, and families recognize deceptive UPI payment tricks, phishing traps, and social engineering attacks before financial loss occurs.
               </p>
               <div className="d-flex flex-wrap gap-3">
@@ -46,7 +50,7 @@ const HomePage = () => {
                   <CheckCircle size={20} />
                   <span>Test Your Scam Instincts</span>
                 </Link>
-                <Link to="/resources" className="btn btn-cyber-outline btn-lg d-flex align-items-center gap-2 px-4 text-white border-light">
+                <Link to="/resources" className="btn btn-cyber-outline btn-lg d-flex align-items-center gap-2 px-4">
                   <BookOpen size={20} />
                   <span>Browse Safety Guides</span>
                 </Link>
@@ -56,20 +60,20 @@ const HomePage = () => {
               <div className="row g-3 mt-4 pt-2">
                 <div className="col-4">
                   <div className="border-start border-2 border-info ps-3">
-                    <h3 className="fw-bold mb-0 text-white">100%</h3>
-                    <small className="text-light opacity-75">Free Community Education</small>
+                    <h3 className="fw-bold mb-0 text-heading">100%</h3>
+                    <small className="text-secondary opacity-75">Free Community Education</small>
                   </div>
                 </div>
                 <div className="col-4">
                   <div className="border-start border-2 border-info ps-3">
-                    <h3 className="fw-bold mb-0 text-white">1930</h3>
-                    <small className="text-light opacity-75">National Cyber Helpline</small>
+                    <h3 className="fw-bold mb-0 text-heading">1930</h3>
+                    <small className="text-secondary opacity-75">National Cyber Helpline</small>
                   </div>
                 </div>
                 <div className="col-4">
                   <div className="border-start border-2 border-info ps-3">
-                    <h3 className="fw-bold mb-0 text-white">6 Modules</h3>
-                    <small className="text-light opacity-75">Aligned to CEP Topics</small>
+                    <h3 className="fw-bold mb-0 text-heading">6 Modules</h3>
+                    <small className="text-secondary opacity-75">Aligned to CEP Topics</small>
                   </div>
                 </div>
               </div>
@@ -77,16 +81,16 @@ const HomePage = () => {
 
             {/* Quick Urgent Alert Card */}
             <div className="col-lg-5">
-              <div className="cyber-card p-4 shadow-lg border-2 border-danger border-opacity-50">
+              <div className="cyber-card info-card bg-white p-4 shadow-lg border-2 border-danger border-opacity-50">
                 <div className="d-flex align-items-center justify-content-between mb-3">
-                  <span className="badge bg-danger bg-opacity-10 text-danger border border-danger px-3 py-1.5 rounded-pill fw-bold d-flex align-items-center gap-1.5">
+                  <span className="badge scam-warning-badge px-3 py-1.5 rounded-pill fw-bold d-flex align-items-center gap-1.5">
                     <AlertTriangle size={15} />
                     <span>CRITICAL SCAM WARNING</span>
                   </span>
                   <span className="small text-muted">Daily Advisory</span>
                 </div>
 
-                <h5 className="fw-bold text-dark mb-2">The Golden Rule of UPI Transactions</h5>
+                <h5 className="fw-bold text-heading mb-2">The Golden Rule of UPI Transactions</h5>
                 <p className="text-secondary small mb-3">
                   Scammers pose as eager buyers on OLX, WhatsApp, or Facebook Marketplace and claim you must scan a QR code and type your UPI PIN to claim money.
                 </p>
@@ -98,7 +102,7 @@ const HomePage = () => {
                   </div>
                 </div>
 
-                <div className="d-flex align-items-center justify-content-between p-3 rounded-3 bg-light border">
+                <div className="d-flex align-items-center justify-content-between p-3 rounded-3 bg-white border shadow-sm">
                   <div>
                     <div className="small text-muted fw-semibold">Victim of financial cybercrime?</div>
                     <div className="fs-5 fw-bold text-danger d-flex align-items-center gap-2">
@@ -127,12 +131,12 @@ const HomePage = () => {
 
           <div className="row g-4">
             <div className="col-md-4">
-              <div className="cyber-card p-4 h-100 d-flex flex-column">
+              <div className="cyber-card topic-card bg-white p-4 h-100 d-flex flex-column shadow-sm">
                 <div className="bg-info bg-opacity-10 text-info p-3 rounded-3 d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '56px', height: '56px' }}>
                   <AlertTriangle size={28} />
                 </div>
-                <h5 className="fw-bold mb-2">Phishing & Fraud Detection</h5>
-                <p className="text-muted small flex-grow-1">
+                <h5 className="fw-bold mb-2 text-heading">Phishing & Fraud Detection</h5>
+                <p className="text-secondary small flex-grow-1">
                   Techniques to spot fake bank KYC messages, electricity bill suspension threats, and suspicious lottery links.
                 </p>
                 <Link to="/scams" className="text-info fw-bold small text-decoration-none d-flex align-items-center gap-1 mt-2">
@@ -143,12 +147,12 @@ const HomePage = () => {
             </div>
 
             <div className="col-md-4">
-              <div className="cyber-card p-4 h-100 d-flex flex-column">
+              <div className="cyber-card topic-card bg-white p-4 h-100 d-flex flex-column shadow-sm">
                 <div className="bg-warning bg-opacity-10 text-warning p-3 rounded-3 d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '56px', height: '56px' }}>
                   <Shield size={28} />
                 </div>
-                <h5 className="fw-bold mb-2">UPI & Payment Hygiene</h5>
-                <p className="text-muted small flex-grow-1">
+                <h5 className="fw-bold mb-2 text-heading">UPI & Payment Hygiene</h5>
+                <p className="text-secondary small flex-grow-1">
                   Practical guidelines to safeguard digital wallets, Google Pay, PhonePe, and protect against fake refund scams.
                 </p>
                 <Link to="/resources" className="text-warning fw-bold small text-decoration-none d-flex align-items-center gap-1 mt-2">
@@ -159,12 +163,12 @@ const HomePage = () => {
             </div>
 
             <div className="col-md-4">
-              <div className="cyber-card p-4 h-100 d-flex flex-column">
+              <div className="cyber-card topic-card bg-white p-4 h-100 d-flex flex-column shadow-sm">
                 <div className="bg-success bg-opacity-10 text-success p-3 rounded-3 d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '56px', height: '56px' }}>
                   <Lock size={28} />
                 </div>
-                <h5 className="fw-bold mb-2">Password & Data Privacy</h5>
-                <p className="text-muted small flex-grow-1">
+                <h5 className="fw-bold mb-2 text-heading">Password & Data Privacy</h5>
+                <p className="text-secondary small flex-grow-1">
                   Why simple passwords fail, how to construct memorable passphrases, and enabling Two-Factor Authentication (2FA).
                 </p>
                 <Link to="/tips" className="text-success fw-bold small text-decoration-none d-flex align-items-center gap-1 mt-2">
@@ -175,12 +179,12 @@ const HomePage = () => {
             </div>
 
             <div className="col-md-4">
-              <div className="cyber-card p-4 h-100 d-flex flex-column">
+              <div className="cyber-card topic-card bg-white p-4 h-100 d-flex flex-column shadow-sm">
                 <div className="bg-primary bg-opacity-10 text-primary p-3 rounded-3 d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '56px', height: '56px' }}>
                   <CheckCircle size={28} />
                 </div>
-                <h5 className="fw-bold mb-2">Interactive Cyber Quizzes</h5>
-                <p className="text-muted small flex-grow-1">
+                <h5 className="fw-bold mb-2 text-heading">Interactive Cyber Quizzes</h5>
+                <p className="text-secondary small flex-grow-1">
                   Real scenario-based multiple-choice quizzes evaluated on the server with immediate score reports and educational guidance.
                 </p>
                 <Link to="/quizzes" className="text-primary fw-bold small text-decoration-none d-flex align-items-center gap-1 mt-2">
@@ -191,12 +195,12 @@ const HomePage = () => {
             </div>
 
             <div className="col-md-4">
-              <div className="cyber-card p-4 h-100 d-flex flex-column">
+              <div className="cyber-card topic-card bg-white p-4 h-100 d-flex flex-column shadow-sm">
                 <div className="bg-danger bg-opacity-10 text-danger p-3 rounded-3 d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '56px', height: '56px' }}>
                   <Users size={28} />
                 </div>
-                <h5 className="fw-bold mb-2">Child & Adolescent Safety</h5>
-                <p className="text-muted small flex-grow-1">
+                <h5 className="fw-bold mb-2 text-heading">Child & Adolescent Safety</h5>
+                <p className="text-secondary small flex-grow-1">
                   Guiding students on cyberbullying, gaming lobbies, privacy settings, and responsible internet citizenship.
                 </p>
                 <Link to="/resources" className="text-danger fw-bold small text-decoration-none d-flex align-items-center gap-1 mt-2">
@@ -207,12 +211,12 @@ const HomePage = () => {
             </div>
 
             <div className="col-md-4">
-              <div className="cyber-card p-4 h-100 d-flex flex-column">
+              <div className="cyber-card topic-card bg-white p-4 h-100 d-flex flex-column shadow-sm">
                 <div className="bg-info bg-opacity-10 text-info p-3 rounded-3 d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '56px', height: '56px' }}>
                   <HelpCircle size={28} />
                 </div>
-                <h5 className="fw-bold mb-2">Community Helpdesk</h5>
-                <p className="text-muted small flex-grow-1">
+                <h5 className="fw-bold mb-2 text-heading">Community Helpdesk</h5>
+                <p className="text-secondary small flex-grow-1">
                   Got a suspicious text or offer? Submit your question to community moderators and track expert advice securely.
                 </p>
                 <Link to="/helpdesk/submit" className="text-info fw-bold small text-decoration-none d-flex align-items-center gap-1 mt-2">
@@ -242,9 +246,9 @@ const HomePage = () => {
           <div className="row g-4">
             {featuredArticles.map((article) => (
               <div key={article.id} className="col-lg-4 col-md-6">
-                <div className="cyber-card p-4 h-100 d-flex flex-column">
+                <div className="cyber-card info-card bg-white p-4 h-100 d-flex flex-column shadow-sm">
                   <div className="d-flex align-items-center justify-content-between mb-3">
-                    <span className="badge bg-secondary bg-opacity-20 text-secondary border border-secondary border-opacity-25 px-2.5 py-1 rounded-pill small">
+                    <span className="badge bg-white text-secondary border shadow-sm px-2.5 py-1 rounded-pill small">
                       {article.categoryName}
                     </span>
                     <ThreatBadge level={article.threatLevel} />
@@ -277,8 +281,8 @@ const HomePage = () => {
           <div className="cyber-card-dark p-4 p-md-5">
             <div className="row align-items-center g-4">
               <div className="col-lg-8">
-                <h3 className="fw-bold mb-2 text-white">Conducting an Awareness Workshop in Your Community?</h3>
-                <p className="text-light opacity-80 mb-0">
+                <h3 className="fw-bold mb-2 text-heading">Conducting an Awareness Workshop in Your Community?</h3>
+                <p className="text-secondary opacity-80 mb-0">
                   Use our interactive quizzes to conduct baseline surveys before your demonstration, and follow-up surveys after your session to measure genuine awareness improvements.
                 </p>
               </div>

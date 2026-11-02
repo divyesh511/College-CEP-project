@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Search, Filter, BookOpen, ArrowRight, Tag, RefreshCw } from 'lucide-react';
 import { articleService } from '../../services/articleService';
 import { categoryService } from '../../services/categoryService';
+import { DUMMY_CATEGORIES, DUMMY_ARTICLES } from '../../data/dummyArticles';
 import ThreatBadge from '../../components/common/ThreatBadge';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 import Pagination from '../../components/common/Pagination';
@@ -16,16 +17,41 @@ const ResourcesPage = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(true);
 
+  // Filter dummy articles locally if backend is unavailable or returns empty
+  const filterDummyArticles = (catId, query, pageNum) => {
+    let filtered = [...DUMMY_ARTICLES];
+    if (catId) {
+      filtered = filtered.filter((a) => String(a.categoryId) === String(catId));
+    }
+    if (query && query.trim()) {
+      const q = query.toLowerCase().trim();
+      filtered = filtered.filter(
+        (a) =>
+          a.title.toLowerCase().includes(q) ||
+          a.summary.toLowerCase().includes(q) ||
+          a.categoryName.toLowerCase().includes(q)
+      );
+    }
+    const pageSize = 9;
+    const total = Math.ceil(filtered.length / pageSize) || 1;
+    const paged = filtered.slice(pageNum * pageSize, (pageNum + 1) * pageSize);
+    setArticles(paged);
+    setTotalPages(total);
+  };
+
   // Load categories
   useEffect(() => {
     const fetchCats = async () => {
       try {
         const res = await categoryService.getAllCategories();
-        if (res.success && res.data) {
+        if (res.success && res.data && res.data.length > 0) {
           setCategories(res.data);
+        } else {
+          setCategories(DUMMY_CATEGORIES);
         }
       } catch (err) {
-        console.error('Error loading categories:', err);
+        console.warn('Error loading categories, using defaults:', err);
+        setCategories(DUMMY_CATEGORIES);
       }
     };
     fetchCats();
@@ -36,12 +62,15 @@ const ResourcesPage = () => {
     setLoading(true);
     try {
       const res = await articleService.getPublishedArticles(catId || null, query, pageNum, 9);
-      if (res.success && res.data) {
-        setArticles(res.data.content || []);
+      if (res.success && res.data && res.data.content && res.data.content.length > 0) {
+        setArticles(res.data.content);
         setTotalPages(res.data.totalPages || 0);
+      } else {
+        filterDummyArticles(catId, query, pageNum);
       }
     } catch (err) {
-      console.error('Error loading articles:', err);
+      console.warn('Error loading articles from API, using dummy articles:', err);
+      filterDummyArticles(catId, query, pageNum);
     } finally {
       setLoading(false);
     }
@@ -75,7 +104,7 @@ const ResourcesPage = () => {
         {/* Header */}
         <div className="text-center max-w-700 mx-auto mb-5">
           <span className="text-info fw-bold small text-uppercase">Community Knowledge Base</span>
-          <h1 className="display-5 fw-extrabold text-dark mt-1">Cyber Safety Resources & Guides</h1>
+          <h1 className="display-5 fw-extrabold text-heading mt-1">Cyber Safety Resources & Guides</h1>
           <p className="text-secondary">
             Browse verified educational articles, scam mitigation procedures, and cybersecurity hygiene guides.
           </p>
@@ -84,48 +113,61 @@ const ResourcesPage = () => {
         {/* Search & Filter Bar */}
         <div className="cyber-card p-3 p-md-4 mb-5 shadow-sm">
           <form onSubmit={handleSearchSubmit} className="row g-3 align-items-center">
-            <div className="col-lg-6">
-              <div className="input-group">
-                <span className="input-group-text border-end-0 text-muted">
-                  <Search size={18} />
-                </span>
-                <input
-                  type="text"
-                  className="form-control border-start-0 ps-0"
-                  placeholder="Search articles by title, keyword, or scam tactic..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <button type="submit" className="btn btn-cyber-primary px-4">
-                  Search
+            {/* Search Input and Search Button with spacing */}
+            <div className="col-lg-5 col-md-6">
+              <div className="d-flex gap-2 align-items-center">
+                <div className="input-group flex-grow-1">
+
+                  <input
+                    type="text"
+                    className="form-control border-start-0 ps-0"
+                    placeholder="Search articles by title, keyword, or scam tactic..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="btn btn-cyber-primary px-3 px-md-4 rounded-3 text-nowrap d-flex align-items-center gap-2 shadow-sm py-2"
+                >
+                  <span>Search</span>
                 </button>
               </div>
             </div>
 
-            <div className="col-lg-4 col-md-8">
-              <div className="input-group">
-                <span className="input-group-text border-end-0 text-muted">
-                  <Filter size={18} />
-                </span>
-                <select
-                  className="form-select border-start-0"
-                  value={selectedCategory}
-                  onChange={(e) => handleCategorySelect(e.target.value)}
+            {/* Category Dropdown and Filter Button with spacing */}
+            <div className="col-lg-5 col-md-6">
+              <div className="d-flex gap-2 align-items-center">
+                <div className="input-group flex-grow-1">
+
+                  <select
+                    className="form-select border-start-0"
+                    value={selectedCategory}
+                    onChange={(e) => handleCategorySelect(e.target.value)}
+                  >
+                    <option value="">All Categories ({categories.length})</option>
+                    {categories.map((c) => (
+                      <option key={c.id} value={c.id}>
+                        {c.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <button
+                  type="submit"
+                  className="btn btn-cyber-primary px-3 px-md-4 rounded-3 text-nowrap d-flex align-items-center gap-1.5 shadow-sm"
                 >
-                  <option value="">All Categories ({categories.length})</option>
-                  {categories.map((c) => (
-                    <option key={c.id} value={c.id}>
-                      {c.name}
-                    </option>
-                  ))}
-                </select>
+                  <Filter size={30} />
+                  <span>Filter</span>
+                </button>
               </div>
             </div>
 
-            <div className="col-lg-2 col-md-4 text-end">
+            {/* Reset Button */}
+            <div className="col-lg-2 col-md-12 text-end">
               <button
                 type="button"
-                className="btn btn-outline-light w-100 d-flex align-items-center justify-content-center gap-1.5 rounded-pill"
+                className="btn btn-outline-light w-100 d-flex align-items-center justify-content-center gap-1.5 rounded-pill shadow-sm"
                 onClick={handleReset}
               >
                 <RefreshCw size={16} />
@@ -138,9 +180,8 @@ const ResourcesPage = () => {
           <div className="d-flex flex-wrap gap-2 mt-3 pt-3 border-top">
             <span className="small text-muted align-self-center me-1">Topics:</span>
             <button
-              className={`badge border px-3 py-1.5 rounded-pill text-decoration-none ${
-                selectedCategory === '' ? 'btn-cyber-primary text-white border-0' : 'bg-secondary bg-opacity-20 text-secondary border-secondary border-opacity-30'
-              }`}
+              className={`badge topic-pill border px-3 py-1.5 rounded-pill text-decoration-none ${selectedCategory === '' ? 'btn-cyber-primary text-white border-0' : 'bg-white text-secondary border shadow-sm'
+                }`}
               onClick={() => handleCategorySelect('')}
             >
               All Topics
@@ -148,9 +189,8 @@ const ResourcesPage = () => {
             {categories.map((c) => (
               <button
                 key={c.id}
-                className={`badge border px-3 py-1.5 rounded-pill text-decoration-none ${
-                  selectedCategory === String(c.id) ? 'btn-cyber-primary text-white border-0' : 'bg-secondary bg-opacity-20 text-secondary border-secondary border-opacity-30'
-                }`}
+                className={`badge topic-pill border px-3 py-1.5 rounded-pill text-decoration-none ${selectedCategory === String(c.id) ? 'btn-cyber-primary text-white border-0' : 'bg-white text-secondary border shadow-sm'
+                  }`}
                 onClick={() => handleCategorySelect(String(c.id))}
               >
                 {c.name}
@@ -165,7 +205,7 @@ const ResourcesPage = () => {
         ) : articles.length === 0 ? (
           <div className="text-center py-5 cyber-card p-5">
             <BookOpen size={48} className="text-muted mb-3" />
-            <h5 className="fw-bold text-dark">No Articles Found</h5>
+            <h5 className="fw-bold text-heading">No Articles Found</h5>
             <p className="text-secondary small max-w-500 mx-auto mb-4">
               We couldn't find any articles matching your search criteria. Try adjusting your keywords or clearing the category filter.
             </p>
@@ -178,9 +218,9 @@ const ResourcesPage = () => {
             <div className="row g-4">
               {articles.map((article) => (
                 <div key={article.id} className="col-lg-4 col-md-6">
-                  <div className="cyber-card p-4 h-100 d-flex flex-column">
+                  <div className="cyber-card info-card bg-white p-4 h-100 d-flex flex-column shadow-sm">
                     <div className="d-flex align-items-center justify-content-between mb-3">
-                      <span className="badge bg-secondary bg-opacity-20 text-secondary border border-secondary border-opacity-25 px-2.5 py-1 rounded-pill small">
+                      <span className="badge bg-white text-secondary border shadow-sm px-2.5 py-1 rounded-pill small">
                         {article.categoryName}
                       </span>
                       <ThreatBadge level={article.threatLevel} />

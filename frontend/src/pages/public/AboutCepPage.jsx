@@ -29,7 +29,7 @@ const AboutCepPage = () => {
                 <h4 className="fw-bold mb-0 text-dark">Aim & Purpose</h4>
               </div>
               <p className="text-secondary leading-relaxed">
-                The primary aim of the <strong>CyberSafe Community</strong> portal is to bridge the critical digital literacy and fraud awareness gap among local community members—specifically <strong>college students, senior citizens, and first-time digital payment users</strong>.
+                The primary aim of the <strong><span className="text-white">CyberSafe</span> <span className="text-info">Community</span></strong> portal is to bridge the critical digital literacy and fraud awareness gap among local community members—specifically <strong>college students, senior citizens, and first-time digital payment users</strong>.
               </p>
               <p className="text-secondary leading-relaxed mb-0">
                 Rather than remaining a theoretical seminar, this initiative provides an interactive, accessible software solution where users can learn scam indicators, practice with realistic simulated quizzes, and ask questions to knowledgeable peer mentors.
@@ -60,7 +60,7 @@ const AboutCepPage = () => {
             <h3 className="fw-bold mb-0 text-dark">College CEP Syllabus Topic Mapping</h3>
           </div>
           <p className="text-secondary mb-4">
-            How each component in the <strong>CyberSafe Community</strong> web application maps directly to the university CEP topic list:
+            How each component in the <strong><span className="text-white">CyberSafe</span> <span className="text-info">Community</span></strong> web application maps directly to the university CEP topic list:
           </p>
 
           <div className="table-responsive">
@@ -139,7 +139,7 @@ const AboutCepPage = () => {
                 <div className="fw-bold text-info mb-1">Step 2: Demonstration</div>
                 <h6 className="fw-bold text-heading">Interactive Portal Workshop</h6>
                 <p className="small text-muted mb-0">
-                  Demonstrate the CyberSafe Community portal on laptop or projector. Walk through real scam screenshots and the UPI Golden Rule.
+                  Demonstrate the <span className="text-white fw-semibold">CyberSafe</span> <span className="text-info fw-semibold">Community</span> portal on laptop or projector. Walk through real scam screenshots and the UPI Golden Rule.
                 </p>
               </div>
             </div>

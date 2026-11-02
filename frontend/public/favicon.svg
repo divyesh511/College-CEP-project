@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="50%" stop-color="#0ea5e9" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+    <linearGradient id="coreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Rounded Shield -->
+  <path d="M32 4 L54 12 C54 36 44 52 32 60 C20 52 10 36 10 12 Z" 
+        fill="url(#bgGrad)" 
+        stroke="url(#shieldGrad)" 
+        stroke-width="3" 
+        stroke-linejoin="round" />
+
+  <!-- Inner Cyber Accent -->
+  <path d="M32 9 L49 15 C49 34 41 47 32 54 C23 47 15 34 15 15 Z" 
+        fill="none" 
+        stroke="url(#shieldGrad)" 
+        stroke-width="1.2" 
+        stroke-opacity="0.45" />
+
+  <!-- Lock Shackle -->
+  <path d="M26 27 V23 C26 19.686 28.686 17 32 17 C35.314 17 38 19.686 38 23 V27" 
+        stroke="url(#coreGrad)" 
+        stroke-width="3" 
+        stroke-linecap="round" 
+        fill="none" />
+
+  <!-- Lock Body -->
+  <rect x="22" y="27" width="20" height="17" rx="3.5" 
+        fill="url(#shieldGrad)" />
+
+  <!-- Keyhole & Beam -->
+  <circle cx="32" cy="34" r="2.2" fill="#0f172a" />
+  <path d="M32 35.5 V39.5" stroke="#0f172a" stroke-width="2" stroke-linecap="round" />
+
+  <!-- Cyber Circuit Accents -->
+  <circle cx="32" cy="50" r="1.5" fill="#38bdf8" />
+  <circle cx="23" cy="18" r="1.2" fill="#06b6d4" />
+  <circle cx="41" cy="18" r="1.2" fill="#06b6d4" />
+</svg>
+

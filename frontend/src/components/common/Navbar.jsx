@@ -21,11 +21,11 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg py-3 sticky-top">
       <div className="container">
         {/* Brand */}
-        <Link className="navbar-brand d-flex align-items-center gap-2 fw-bold fs-4 text-decoration-none" to="/">
-          <div className="bg-info bg-opacity-15 p-2 rounded-circle border border-info border-opacity-30 d-flex align-items-center justify-content-center shadow-sm">
-            <Shield className="text-info" size={24} />
+        <Link className="navbar-brand d-flex align-items-center gap-2.5 fw-bold fs-4 text-decoration-none" to="/">
+          <div className="p-1 rounded-circle d-flex align-items-center justify-content-center shadow-sm">
+            <img src="/favicon.svg" alt="CyberSafe Logo" width="34" height="34" className="rounded-circle" />
           </div>
-          <span>CyberSafe<span className="text-info">Community</span></span>
+          <span><span className="text-white">CyberSafe</span><span className="text-info">Community</span></span>
         </Link>
 
         {/* Mobile Toggle */}
